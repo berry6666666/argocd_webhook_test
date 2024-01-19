@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicd-test
+  template:
+    metadata:
+      labels:
+        app: cicd-test
+    spec:
+      containers:
+      - name: hey-jenkins
+        image: drone.getac.com/test/hey_jenkins:34
+        ports:
+        - containerPort: 80
+      
+      imagePullSecrets:
+      - name: cicd-test-secret
+      # - name: image-pull-secret-argocd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-test-service
+spec:
+  selector:
+    app: cicd-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
