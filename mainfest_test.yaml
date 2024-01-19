@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hey-jenkins
-        image: drone.getac.com/test/hey_jenkins:40
+        image: drone.getac.com/test/hey_jenkins:44
         ports:
         - containerPort: 80
       
